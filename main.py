@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
 import smtplib
+import time
 
 MY_LAT = 0.0  # Your latitude
 MY_LONG = 0.0  # Your longitude
@@ -67,6 +68,8 @@ def send_email():
         )
 
 
-# TODO: Send email every 60 seconds while True
-if iss_is_close() and is_after_sunset():
-    send_email()
+# Run continuously and check every 3 minutes.
+while True:
+    time.sleep(180)
+    if iss_is_close() and is_after_sunset():
+        send_email()
